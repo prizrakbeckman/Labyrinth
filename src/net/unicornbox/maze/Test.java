@@ -20,14 +20,14 @@ public class Test {
 					maze.getMaze()[i][j].setCellState(MazeCellState.WALL);
 			}
 		}
-		System.err.println("qaaaaaa");
+		System.err.println(maze.getMaze().length*maze.getMaze()[0].length);
 		maze.getMaze()[0][0].setCellState(MazeCellState.ENTRANCE);
 		maze.getMaze()[999][999].setCellState(MazeCellState.EXIT);
 		Date d1 = new Date();
 		List<MazeCell> mazeCell = mazePathFinder.findOptimalPath(maze);
 		Date d2 = new Date();
 		long seconds = (d2.getTime()-d1.getTime())/1000; 
-		System.err.println(mazeCell);
+		System.err.println(mazeCell.size());
 		
 	}
 

@@ -51,7 +51,7 @@ public class MazePathFinderImpl implements MazePathFinder {
             }
         }
        
-  
+        maze.setOptimalPathLength(constructPath(target, parents, minDist).size());
         return constructPath(target, parents, minDist);
       
     }
