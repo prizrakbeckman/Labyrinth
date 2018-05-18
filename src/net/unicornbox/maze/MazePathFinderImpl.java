@@ -14,7 +14,8 @@ public class MazePathFinderImpl implements MazePathFinder {
   
     private static final int row[] = { -1, 0, 0, 1 };
     private static final int col[] = { 0, -1, 1, 0 };
-  
+    
+    //La Méthode qui doit nécessairement être implémentée pour implémenter l'interface MathPathFinder. Cette méthode résout la solution
     @Override
     public List<MazeCell> findOptimalPath(Maze maze) {
         Map<MazeCell, MazeCell> parents = new HashMap<>();
@@ -37,6 +38,9 @@ public class MazePathFinderImpl implements MazePathFinder {
             {
                 int posX = i + row[k];
                 int posY = j + col[k];
+                
+                //Vérifier si la cellule est valide pour être visité et exploité.
+                
                 if (isValid(maze, visited, posX, posY, n))
                 {
                     visited[i + row[k]][j + col[k]] = true;
@@ -45,8 +49,7 @@ public class MazePathFinderImpl implements MazePathFinder {
                     if (!parents.containsKey(mazeCellChild)) {
                         parents.put(mazeCellChild, mazeCell);
                     }
-                    if(mazeCellChild.getX()==5 && mazeCellChild.getY()==5 )
-                        System.err.println(mazeCellChild+""+mazeCell);
+                    
                 }
             }
         }
@@ -55,7 +58,8 @@ public class MazePathFinderImpl implements MazePathFinder {
         return constructPath(target, parents, minDist);
       
     }
-   
+    
+    //Construction du chemin de (0,0) à (n-1,n-1)
     private List<MazeCell> constructPath(MazeCell target, Map<MazeCell,MazeCell> parents, int minDist) {
         MazeCell current = target;
         final List<MazeCell> path = new ArrayList<>();
@@ -70,7 +74,7 @@ public class MazePathFinderImpl implements MazePathFinder {
         return path;
     }
 
-  
+    //tester si la cellule i,j est valide, (si ce n'est pas un mur)
      private static boolean isValid(Maze maze, boolean visited[][], int i, int j, int n)
         {
             
