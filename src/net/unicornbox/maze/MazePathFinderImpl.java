@@ -19,6 +19,7 @@ public class MazePathFinderImpl implements MazePathFinder {
     @Override
     public List<MazeCell> findOptimalPath(Maze maze) {
         Map<MazeCell, MazeCell> parents = new HashMap<>();
+        List<MazeCell> finalPath = new ArrayList<>();
         int n = maze.getMaze().length;
         int i,j;
         boolean[][] visited = new boolean[n][n];  
@@ -53,9 +54,9 @@ public class MazePathFinderImpl implements MazePathFinder {
                 }
             }
         }
-       
-        maze.setOptimalPathLength(constructPath(target, parents, minDist).size());
-        return constructPath(target, parents, minDist);
+        finalPath = constructPath(target, parents, minDist);
+        maze.setOptimalPathLength(finalPath.size());
+        return finalPath;
       
     }
     
