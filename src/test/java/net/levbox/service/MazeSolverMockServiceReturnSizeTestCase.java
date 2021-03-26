@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class MazeSolverMockServiceReturnSizeTestCase {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MazeSolverMockServiceReturnSizeTestCase.class);
 
     @InjectMocks
     private MazePathFinderImpl mazePathFinder;
@@ -72,7 +76,7 @@ class MazeSolverMockServiceReturnSizeTestCase {
         List<MazeCell> mazeCellPath = this.mazePathFinder.findOptimalPath(maze);
         Date d2 = new Date();
         this.solvingTime = (d2.getTime() - d1.getTime()) / 1000;
-        System.err.println("Solving time is "+ this.solvingTime);
+        LOG.info("Solving time is "+ this.solvingTime);
         return mazeCellPath.size();
     }
 
