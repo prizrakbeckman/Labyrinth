@@ -4,13 +4,15 @@ import net.lewbox.model.Maze;
 import net.lewbox.model.MazeCell;
 import net.lewbox.model.MazeCellState;
 import net.lewbox.service.MazePathFinder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class MazePathFinderImpl implements MazePathFinder {
-
+    private static final Logger LOG = LoggerFactory.getLogger(MazePathFinderImpl.class);
     private static final int[] row = {-1, 0, 0, 1};
     private static final int[] col = {0, -1, 1, 0};
 
@@ -63,7 +65,7 @@ public class MazePathFinderImpl implements MazePathFinder {
             current = parents.get(current);
             minDist++;
         }
-        System.out.println("The path's length is " + minDist);
+        LOG.info("The path's length is " + minDist);
         Collections.reverse(path);
         return path;
     }
