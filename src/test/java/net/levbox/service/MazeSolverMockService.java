@@ -3,7 +3,6 @@ package net.levbox.service;
 import net.lewbox.model.Maze;
 import net.lewbox.model.MazeCell;
 import net.lewbox.model.MazeCellState;
-import net.lewbox.service.MazePathFinder;
 import net.lewbox.service.impl.MazePathFinderImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
-public class MazeSolverMockService {
+class MazeSolverMockServiceReturnSizeTestCase {
 
     @InjectMocks
     private MazePathFinderImpl mazePathFinder;
@@ -33,12 +32,12 @@ public class MazeSolverMockService {
     }
 
     @Test
-    public void testSolvingMazeShouldReturnIntegerNonNull(){
+    void testSolvingMazeShouldReturnIntegerNonNull(){
         assertNotNull(this.mazeSizeResult);
     }
 
     @Test
-    public void testSolvingTestShouldBeLessThanTwoSeconds(){
+    void testSolvingTestShouldBeLessThanTwoSeconds(){
         assertTrue(this.solvingTime<2);
     }
 
@@ -73,6 +72,7 @@ public class MazeSolverMockService {
         List<MazeCell> mazeCellPath = this.mazePathFinder.findOptimalPath(maze);
         Date d2 = new Date();
         this.solvingTime = (d2.getTime() - d1.getTime()) / 1000;
+        System.err.println("Solving time is "+ this.solvingTime);
         return mazeCellPath.size();
     }
 
