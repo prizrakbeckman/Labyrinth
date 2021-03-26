@@ -33,7 +33,7 @@ public class MazeCell
     public void setCellState(MazeCellState cellState)
     {
         this.cellState = cellState;
-    };
+    }
 
     @Override
     public String toString()

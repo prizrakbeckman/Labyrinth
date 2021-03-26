@@ -2,18 +2,18 @@ package net.lewbox.model;
 
 public class Maze
 {
-    private MazeCell[][] maze;
+    private MazeCell[][] mazeCell;
 
     private int optimalPathLength = Integer.MAX_VALUE;
 
-    public Maze(int N)
+    public Maze(int n)
     {
-        this.maze = new MazeCell[N][N];
+        this.mazeCell = new MazeCell[n][n];
     }
 
     public MazeCell[][] getMaze()
     {
-        return this.maze;
+        return this.mazeCell;
     }
 
     public int getOptimalPathLength()
