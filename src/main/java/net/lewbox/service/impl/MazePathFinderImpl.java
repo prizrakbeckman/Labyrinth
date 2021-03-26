@@ -1,18 +1,12 @@
 package net.lewbox.service.impl;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-
+import net.lewbox.model.Maze;
 import net.lewbox.model.MazeCell;
 import net.lewbox.model.MazeCellState;
-import net.lewbox.model.Maze;
 import net.lewbox.service.MazePathFinder;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 @Service
 public class MazePathFinderImpl implements MazePathFinder {

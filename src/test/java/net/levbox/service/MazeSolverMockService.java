@@ -1,13 +1,15 @@
-package java.net.levbox.service;
-
+package net.levbox.service;
 
 import net.lewbox.model.Maze;
 import net.lewbox.model.MazeCell;
 import net.lewbox.model.MazeCellState;
 import net.lewbox.service.MazePathFinder;
+import net.lewbox.service.impl.MazePathFinderImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Date;
 import java.util.List;
@@ -15,25 +17,28 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class MazeSolverMockService {
 
-    @Mock
-    private final MazePathFinder mazePathFinder;
+    @InjectMocks
+    private MazePathFinderImpl mazePathFinder;
 
     private Long solvingTime;
 
-    public MazeSolverMockService(MazePathFinder mazePathFinder) {
-        this.mazePathFinder = mazePathFinder;
+    private Integer mazeSizeResult;
+
+    @BeforeEach
+    void calculateSolvingTime(){
+        this.mazeSizeResult = solveMaze();
     }
 
     @Test
-    void testSolvingMazeShouldReturnIntegerNonNull(){
-        assertNotNull(solveMaze());
+    public void testSolvingMazeShouldReturnIntegerNonNull(){
+        assertNotNull(this.mazeSizeResult);
     }
 
     @Test
-    void testSolvingTestShouldBeLessThanTwoSeconds(){
+    public void testSolvingTestShouldBeLessThanTwoSeconds(){
         assertTrue(this.solvingTime<2);
     }
 
